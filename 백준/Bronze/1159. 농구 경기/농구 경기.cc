@@ -1,9 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-string s;
-int N;
-int cnt[26];
+string s, ret;
+int N, cnt[26];
 
 int main() {
 	cin >> N;
@@ -12,15 +11,10 @@ int main() {
 		cnt[s[0] - 'a']++;
 	}	
 	
-	bool flag = false;
-	for (int i = 0; i < 26; i++) {
-		if(cnt[i] >= 5) {
-			cout << (char)(i + 'a');
-			flag = true;
-		}
-	}
+	for (int i = 0; i < 26; i++) if(cnt[i] >= 5) ret += (i + 'a');
 	
-	if(!flag) cout << "PREDAJA";	
+	if(ret.size()) cout << ret << '\n';
+	else cout << "PREDAJA" << '\n';	
 		
 	return 0;
 }

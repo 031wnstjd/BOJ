@@ -2,29 +2,26 @@
 
 using namespace std;
 
-int TC, N;
-unordered_map<string, int> ht;
+int tc, N;
+string name, category;
 
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
-	cin >> TC;
-	for (int testCase = 0; testCase < TC; testCase++) {
+	cin >> tc;
+	while(tc--) {
+		map<string, int> _map;
 		cin >> N;
-				
-		string name, category;
 		for (int i = 0; i < N; i++) {
 			cin >> name >> category;
-			auto it = ht.find(category);
-			if (it != ht.end()) it->second += 1;
-			else ht.insert({category, 2});
+			_map[category]++;
 		} 		
 		int res = 1;
-		for (auto it : ht) res *= it.second;
-		cout << res - 1 << '\n';
-		ht.clear(); 
+		for (auto it : _map) res *= (it.second + 1);
+		res--;
+		cout << res << '\n';
 	}
 	
 	return 0;

@@ -13,14 +13,11 @@ int main() {
 	for (int i = 0; i < N; i++) {
 		cin >> s;
 		stack<char> stk;
-		for (int j = 0; j < s.size(); j++) {
-			if(stk.size() && stk.top() == s[j]) {
-				stk.pop();	
-				continue;
-			}
-			stk.push(s[j]);
+		for (char c : s) {
+			if(stk.size() && stk.top() == c) stk.pop();	
+			else stk.push(c);
 		}
-		if(!stk.size()) cnt++;
+		if(stk.size() == 0) cnt++;
 	}
 	
 	cout << cnt << '\n';

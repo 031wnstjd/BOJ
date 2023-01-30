@@ -4,10 +4,10 @@ using namespace std;
 
 #define MAX_N (54)
 
-int board[MAX_N][MAX_N], visited[MAX_N][MAX_N], T, N, M, K, r, c;
+int board[MAX_N][MAX_N], visited[MAX_N][MAX_N], t, N, M, K, r, c, ret;
 
-int dr[] = {0, 0,-1, 1};
-int dc[] = {1,-1, 0, 0};
+int dr[4] = {0, 0,-1, 1};
+int dc[4] = {1,-1, 0, 0};
 
 void dfs(int r, int c) {
 	visited[r][c] = 1;
@@ -24,31 +24,26 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 	
-	cin >> T;
-	for (int t = 0; t < T; t++) {
+	cin >> t;
+	while(t--) {
+		fill(&board[0][0], &board[0][0] + MAX_N * MAX_N, 0);
+		fill(&visited[0][0], &visited[0][0] + MAX_N * MAX_N, 0);
 		cin >> M >> N >> K;
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				board[i][j] = 0;
-				visited[i][j] = 0;
-			}
-		}
-		
 		for (int i = 0; i < K; i++) {
 			cin >> c >> r;
 			board[r][c] = 1;
 		}
 				
-		int cnt = 0;
+		ret = 0;
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
-				if(board[i][j] && visited[i][j] == 0){
+				if(board[i][j] && !visited[i][j]){
 					dfs(i, j);	
-					cnt++;
+					ret++;
 				}
 			}
 		}
-		cout << cnt << '\n';
+		cout << ret << '\n';
 	}
 	
 	return 0;

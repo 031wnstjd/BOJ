@@ -4,11 +4,10 @@
 
 using namespace std;
 
-stack<int> stk;
-int N, a[MAX_N], ret[MAX_N];
-
 int main() {
 	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+	stack<int> stk;
+	int N, a[MAX_N], ret[MAX_N];
 	cin >> N;
 	memset(ret, -1, sizeof(ret));
 	for (int i = 0; i < N; i++) {

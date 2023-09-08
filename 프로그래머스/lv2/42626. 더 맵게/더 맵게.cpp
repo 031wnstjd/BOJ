@@ -6,30 +6,19 @@ long long a, b;
 
 int solution(vector<int> scoville, int K) {
 
-    priority_queue<int, vector<int>, greater<>> pq;
-    
-    for (int num : scoville) {
-        pq.push(num);
-    }
+    priority_queue<int, vector<int>, greater<>> pq(scoville.begin(), scoville.end());
     
     int count = 0;
-    bool isValid = false;
     
-    while (pq.size()) {
+    while (pq.top() < K) {
+        if (pq.size() == 1) return -1;
+
         a = pq.top(); pq.pop();
-    
-        if (a >= K) {
-            isValid = true;
-            break;
-        }
+        b = pq.top(); pq.pop();
         
-        if (pq.size()) {
-            b = pq.top(); pq.pop();   
-            pq.push(a + (b * 2));
-            ++count;
-        }
+        pq.push(a + (b * 2));
+        ++count;
     }
     
-    
-    return isValid ? count : -1;
+    return count;
 }
